@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
+const morgan = require("morgan");
 const { notFoundError, sendErrors } = require("./config/errorHandler");
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(morgan("dev"));
 
 //load Schemas
 const User = require("./models/User");
@@ -26,11 +28,11 @@ app.use(sendErrors);
 
 //Setting up server
 startServer = async () => {
-    try {
-        await app.listen(process.env.PORT);
-        console.log(`Server is up and running on Port ${process.env.PORT}`);
-    } catch (err) {
-        console.log("Error in running server.");
-    }
+	try {
+		await app.listen(process.env.PORT);
+		console.log(`Server is up and running on Port ${process.env.PORT}`);
+	} catch (err) {
+		console.log("Error in running server.");
+	}
 };
 startServer();
