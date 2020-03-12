@@ -1,5 +1,6 @@
-require("dotenv").config();
+// import helper functions
+const { sendSuccess } = require("../utility/helpers");
 
 module.exports.index = (req, res) => {
-	return res.json({ message: "Welcome to API" });
+	sendSuccess(res, "Welcome to this API!!");
 };

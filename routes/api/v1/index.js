@@ -1,8 +1,14 @@
 const express = require("express");
 const router = express.Router();
 
-const { index } = require("./../../../controllers/index_controller");
+// load controller
+const { index } = require("../../../controllers/index_controller");
 
-router.get("/", index);
+// middlewares
+let { catchErrors } = require("../../../config/errorHandler");
 
+// routes
+router.get("/", catchErrors(index));
+
+// export router
 module.exports = router;
