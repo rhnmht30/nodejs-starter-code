@@ -11,8 +11,7 @@ require("dotenv").config();
 require("./config/dbconnection");
 
 app.use(cors({ exposedHeaders: "x-auth-token" }));
-app.use(express.static(path.join(__dirname, "public")));
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 app.use(
 	bodyParser.urlencoded({
 		limit: "50mb",
